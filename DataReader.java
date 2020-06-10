@@ -1,8 +1,3 @@
-package jaist.utility;
-
-import jaist.entity.Article;
-import jaist.entity.Tweet;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -25,15 +20,16 @@ public class DataReader {
 		read.close();
 		return status;
 	}
-	
+
+	/*
 	public static ArrayList<Article> readArticle(File f) throws ClassNotFoundException, IOException{
 		FileInputStream fis = new FileInputStream(f);
 		ObjectInputStream read = new ObjectInputStream(fis);
 		ArrayList<Article> docs = (ArrayList<Article>) read.readObject();
 		read.close();
 		return docs;
-	}
-	
+	}*/
+
 	public static void readTweetTest(String path) throws IOException, ClassNotFoundException{
 		File f = new File(path);
 		FileInputStream fis = new FileInputStream(f);
@@ -48,7 +44,8 @@ public class DataReader {
 		System.out.println(status.getCreatedAt().toString());
 		read.close();
 	}
-	
+
+	/*
 	public static List<Tweet> readAllTweet(File[] files) throws ClassNotFoundException, IOException{
 		List<Tweet> data = new ArrayList<>();
 		Status status = null;
@@ -78,8 +75,9 @@ public class DataReader {
 		}
 		System.out.println("The number of English tweets:=" + count);
 		return data;
-	}
-	
+	}*/
+
+	/*
 	public static List<Article> readAllArticle(File[] files) throws ClassNotFoundException, IOException{
 		List<Article> data = new ArrayList<>();
 		List<Article> status = null;
@@ -96,8 +94,7 @@ public class DataReader {
 		}
 		System.out.println("The number of English tweets:=" + count);
 		return data;
-	}
-	
+	}*/
 	public static void main(String[] args) throws ClassNotFoundException, IOException{
 		String path = "data/from_news_bin/brexit";
 		File folder = new File(path);
