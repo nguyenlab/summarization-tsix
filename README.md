@@ -1,10 +1,10 @@
 # TSix: A tweet-event summarization dataset
 
-This is a social event summarization dataset. We crawled tweets related to 6 
-events from Twitter using Twitter public API. The data is collected in 26 
-continuous days. We provided the the clustered version of raw data with its 
+This is a social event summarization dataset. We crawled tweets related to 6
+events from Twitter using Twitter public API. The data is collected in 26
+continuous days. We provided the the clustered version of raw data with its
 two references: the machine-annotated set based on hashtag and the manually
-annotated set created by two annotatators. 
+annotated set created by two annotatators.
 
 Tweet data is divided by event, published date and cluster.
 
@@ -12,12 +12,23 @@ Tweet data is divided by event, published date and cluster.
 ## Directories
 
 The data is organized as follow:
-  - from_top_bin_raw_data: the raw data collected from Twitter. You can use the DataReader.java file to read the data and do the cluster as the description in the paper.
+  - from_top_bin_raw_data: the raw data collected from Twitter. You can use the DataReader.java file to read the data and do the cluster as the description in the paper. See section `Reading raw data` below for detailed instructions.
   - data-cluster: Each event is clustered into multiple subtopics by Affinity Propagation.
   - reference-hashtag: An automatic reference of data-cluster using hashtag.
   					 File name pattern: "sum.<day>.<cluster>.<annotator>.txt"
   - reference-votting: An human-annotated reference created by two annotators.
   					 File name pattern: "sum.<day>.<cluster>.<annotator>.txt"
+
+## Reading raw data
+If you need more information than the text content of the posts such as Retweet Count (see class **Status** at [Twitter4J API](http://twitter4j.org/javadoc/index.html) for all available fields ), you need to read from raw data file.
+1. Go to `DataReader.java` **line 123 and 124** to configure `path` (the folder to the raw data of the topic you interested) and `outPath` (the path to save the extracted information).
+2. Further down in main() **line 143 onwards**, you can choose the fields from Status class that you are interested in.
+Compile and run with the included [Twitter4J v4.0.4 library](http://twitter4j.org/archive/twitter4j-4.0.4.zip) (the later versions do not work as they changed the class signature):
+```
+javac -cp ".:./t4j-4.0.4.jar" DataReader.java
+java -cp ".:./t4j-4.0.4.jar" DataReader
+```
+By default, the output file separates each Tweet status with a `\t` delimiter and useus a `|||` delimiter among fields of a single Tweet status. It has been validated that these 2 delimiter do not appear in the raw data as field content.
 
 ## Contributing
 
@@ -53,4 +64,3 @@ application.
 	Nguyen Minh Tien: tiennm@jaist.ac.jp
 	Lai Dac Viet: vietld@jaist.ac.jp
 	Nguyen Tien Huy: ntienhuy@jaist.ac.jp
-
